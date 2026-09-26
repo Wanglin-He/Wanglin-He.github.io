@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A clean academic portfolio for research, publications, and selected work.">
+  <meta name="color-scheme" content="light dark">
+  <title>Wanglin-He | Personal Website</title>
+  <script defer src="content.js"></script>
+  <script defer src="render.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231a3d36'/%3E%3Cpath d='M17 19h9l6 11 6-11h9L36 38v9h-8v-9z' fill='%23f4f1e8'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #f7f7f4;
+      --surface: #ffffff;
+      --ink: #17211f;
+      --muted: #66716e;
+      --faint: #e5e9e6;
+      --accent: #1f5b4f;
+      --accent-soft: #dcebe6;
+      --mark: #cfe5dc;
+      --shadow: 0 18px 50px rgba(22, 43, 37, .08);
+    }
+    [data-theme="dark"] {
+      --bg: #111715;
+      --surface: #18201e;
+      --ink: #edf2ef;
+      --muted: #a8b3af;
+      --faint: #2c3733;
+      --accent: #90cbb8;
+      --accent-soft: #213c35;
+      --mark: #315c4e;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .24);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      transition: background .25s ease, color .25s ease;
+    }
+    a { color: inherit; text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent); text-underline-offset: .18em; }
+    a:hover { color: var(--accent); }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .page { width: min(1040px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar { display: flex; justify-content: flex-end; padding-top: 24px; }
+    .theme-toggle {
+      display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--faint);
+      border-radius: 999px; background: var(--surface); box-shadow: 0 5px 18px rgba(22,43,37,.05);
+    }
+    .theme-toggle button {
+      width: 34px; height: 34px; border: 0; border-radius: 50%; background: transparent;
+      color: var(--muted); cursor: pointer; font-size: 16px;
+    }
+    .theme-toggle button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+    .hero {
+      display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 78px;
+      padding: 34px 0 76px; border-bottom: 1px solid var(--faint); align-items: start;
+    }
+    h1, h2, h3 { font-family: "Newsreader", Georgia, serif; }
+    h1 { margin: 0; font-size: clamp(3.4rem, 7vw, 5.35rem); line-height: .96; letter-spacing: -.045em; font-weight: 600; }
+    .role { margin: 15px 0 28px; color: var(--muted); font-family: "Newsreader", Georgia, serif; font-size: 1.25rem; }
+    .bio { max-width: 710px; }
+    .bio p { margin: 0 0 15px; }
+    .links { display: flex; flex-wrap: wrap; gap: 10px 21px; margin-top: 28px; }
+    .links a { color: var(--muted); text-decoration: none; font-size: .95rem; }
+    .links a:hover { color: var(--accent); }
+    .portrait-wrap { position: sticky; top: 24px; }
+    .portrait {
+      width: 210px; aspect-ratio: 1; margin-left: auto; border-radius: 50%; display: block; overflow: hidden;
+      color: #eef8f4; background:
+        radial-gradient(circle at 68% 27%, rgba(255,255,255,.18) 0 7%, transparent 8%),
+        linear-gradient(145deg, #2c7a67, #173e36 64%, #0f2722);
+      box-shadow: var(--shadow); font: 600 3.7rem/1 "Newsreader", Georgia, serif; letter-spacing: -.06em;
+      border: 7px solid var(--surface);
+    }
+    .portrait-note { margin: 13px 0 0; text-align: center; color: var(--muted); font-size: .78rem; }
+    .portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 48% 57%; transform: scale(1.65); transform-origin: 48% 57%; }
+    .publication-draft { display: none !important; }
+    .section { padding: 66px 0 36px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
+    h2 { margin: 0; font-size: clamp(2.2rem, 5vw, 3.35rem); line-height: 1; letter-spacing: -.03em; }
+    .filters { display: flex; gap: 6px; padding: 4px; border: 1px solid var(--faint); border-radius: 999px; background: var(--surface); }
+    .filters button {
+      padding: 8px 16px; border: 0; border-radius: 999px; color: var(--muted); background: transparent;
+      font: 500 .9rem/1 "DM Sans", sans-serif; cursor: pointer;
+    }
+    .filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+    .note { margin: -10px 0 28px; color: var(--muted); font-size: .88rem; }
+    .pub-list { display: grid; gap: 16px; }
+    .publication {
+      display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 28px; padding: 20px;
+      border: 1px solid var(--faint); border-radius: 18px; background: var(--surface);
+      box-shadow: 0 4px 18px rgba(22,43,37,.025); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .publication:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--accent) 28%, var(--faint)); }
+    .paper-art {
+      position: relative; min-height: 142px; overflow: hidden; border-radius: 11px; padding: 16px;
+      display: flex; flex-direction: column; justify-content: space-between; color: #effaf6;
+      background: linear-gradient(145deg, #327a69, #153d35);
+    }
+    .paper-art::after {
+      content: ""; position: absolute; right: -25px; bottom: -30px; width: 130px; height: 130px;
+      border: 22px solid rgba(255,255,255,.11); border-radius: 50%;
+    }
+    .paper-art.amber { background: linear-gradient(145deg, #a9642f, #57331d); }
+    .paper-art.blue { background: linear-gradient(145deg, #386da1, #1b344f); }
+    .paper-art.ink { background: linear-gradient(145deg, #585b69, #242730); }
+    .paper-code { position: relative; z-index: 1; font-size: .72rem; letter-spacing: .13em; text-transform: uppercase; opacity: .78; }
+    .paper-shape { position: relative; z-index: 1; font: 500 2.1rem/1 "Newsreader", Georgia, serif; }
+    .pub-body { align-self: center; }
+    .pub-body h3 { margin: 0 0 5px; font-size: 1.45rem; line-height: 1.15; letter-spacing: -.015em; }
+    .authors, .summary { margin: 0; color: var(--muted); }
+    .venue { display: inline-flex; margin: 10px 0 11px; padding: 3px 9px; border-radius: 999px; color: var(--accent); background: var(--accent-soft); font-size: .78rem; font-weight: 600; }
+    .paper-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+    .paper-links a { color: var(--accent); font-size: .86rem; font-weight: 600; text-decoration: none; }
+    .publication[hidden] { display: none; }
+    footer { display: flex; justify-content: space-between; gap: 30px; margin-top: 58px; padding: 28px 0 42px; border-top: 1px solid var(--faint); color: var(--muted); font-size: .84rem; }
+    :focus-visible { outline: 3px solid var(--mark); outline-offset: 3px; }
+    @media (max-width: 760px) {
+      .page { width: min(100% - 28px, 620px); }
+      .topbar { padding-top: 15px; }
+      .hero { grid-template-columns: 1fr; gap: 28px; padding-top: 20px; padding-bottom: 52px; }
+      .portrait-wrap { grid-row: 1; position: static; }
+      .portrait { width: 120px; margin: 0; font-size: 2.5rem; border-width: 5px; }
+      .portrait-note { display: none; }
+      h1 { font-size: clamp(3.2rem, 15vw, 4.8rem); }
+      .section { padding-top: 50px; }
+      .section-head { align-items: center; }
+      .publication { grid-template-columns: 1fr; gap: 18px; padding: 14px; }
+      .paper-art { min-height: 120px; }
+      footer { flex-direction: column; gap: 5px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <div class="theme-toggle" role="group" aria-label="Color theme">
+        <button type="button" data-theme-choice="light" aria-label="Use light theme" aria-pressed="true">☀</button>
+        <button type="button" data-theme-choice="dark" aria-label="Use dark theme" aria-pressed="false">☾</button>
+      </div>
+    </div>
+
+    <section class="hero" aria-labelledby="intro-title">
+      <div>
+        <h1 id="intro-title">Welcome.</h1>
+        <p class="role">Curiosity, ideas, and work in progress.</p>
+        <div class="bio">
+          <p>I’m drawn to questions that make me pause, look closer, and learn something new. I enjoy connecting ideas across disciplines and turning an initial spark of curiosity into something I can explore, build, and share.</p>
+          <p>For me, meaningful work starts with a good question and grows through careful thought, hands-on exploration, and conversations with others. This is a home for the projects, writing, and discoveries that emerge along the way.</p>
+        </div>
+        <nav class="links" aria-label="On this page">
+          <a href="#publications-title">Publications ↓</a>
+        </nav>
+      </div>
+      <aside class="portrait-wrap" aria-label="Profile portrait">
+        <div class="portrait"><img src="portrait.png" alt="Portrait outdoors in front of a stone building" width="846" height="730" fetchpriority="high"></div>
+      </aside>
+    </section>
+
+    <section class="section" aria-labelledby="publications-title">
+      <div class="section-head">
+        <h2 id="publications-title">Publications</h2>
+        <div class="filters publication-draft" role="group" aria-label="Filter publications">
+          <button type="button" data-filter="selected" aria-pressed="true">Selected</button>
+          <button type="button" data-filter="all" aria-pressed="false">All</button>
+        </div>
+      </div>
+      <p class="note">Publication details will be added here.</p>
+
+      <div class="pub-list publication-draft">
+        <article class="publication" data-selected="true">
+          <div class="paper-art"><span class="paper-code">P–01 · Systems</span><span class="paper-shape">Sense<br>&amp; Shape</span></div>
+          <div class="pub-body">
+            <h3><a href="#">Learning Structured Representations for Adaptive Systems</a></h3>
+            <p class="authors"><strong>Your Name</strong>, Collaborator One, Collaborator Two</p>
+            <span class="venue">Conference 2026 · Spotlight</span>
+            <p class="summary">A concise one-sentence explanation of the problem, approach, and the result that matters most.</p>
+            <div class="paper-links"><a href="#">Project</a><a href="#">Paper</a><a href="#">Code</a></div>
+          </div>
+        </article>
+
+        <article class="publication" data-selected="true">
+          <div class="paper-art blue"><span class="paper-code">P–02 · Learning</span><span class="paper-shape">World<br>Models</span></div>
+          <div class="pub-body">
+            <h3><a href="#">Interactive World Models from Sparse Observations</a></h3>
+            <p class="authors">Collaborator One, <strong>Your Name</strong>, Collaborator Three</p>
+            <span class="venue">Journal 2025</span>
+            <p class="summary">A practical framework that learns reusable dynamics while remaining efficient enough for interactive use.</p>
+            <div class="paper-links"><a href="#">Website</a><a href="#">arXiv</a><a href="#">Demo</a></div>
+          </div>
+        </article>
+
+        <article class="publication" data-selected="true">
+          <div class="paper-art amber"><span class="paper-code">P–03 · Interaction</span><span class="paper-shape">Human<br>Signals</span></div>
+          <div class="pub-body">
+            <h3><a href="#">Human-Guided Discovery for Generalizable Agents</a></h3>
+            <p class="authors"><strong>Your Name</strong>, Collaborator Two, Collaborator Four</p>
+            <span class="venue">Conference 2024</span>
+            <p class="summary">We combine lightweight human feedback with representation learning to improve generalization in new settings.</p>
+            <div class="paper-links"><a href="#">Paper</a><a href="#">Code</a></div>
+          </div>
+        </article>
+
+        <article class="publication" data-selected="false" hidden>
+          <div class="paper-art ink"><span class="paper-code">P–04 · Workshop</span><span class="paper-shape">Open<br>Tools</span></div>
+          <div class="pub-body">
+            <h3><a href="#">An Open Toolkit for Reproducible Experiments</a></h3>
+            <p class="authors">Collaborator Three, <strong>Your Name</strong></p>
+            <span class="venue">Workshop 2023</span>
+            <p class="summary">A modular toolkit for building, comparing, and documenting research experiments with less overhead.</p>
+            <div class="paper-links"><a href="#">Paper</a><a href="#">Code</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer><span>© <span id="year"></span></span><span>Always learning. Always exploring.</span></footer>
+  </main>
+  <script>
+    const root = document.documentElement;
+    const themeButtons = [...document.querySelectorAll('[data-theme-choice]')];
+    const preferredTheme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    function setTheme(theme) {
+      root.dataset.theme = theme;
+      themeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === theme)));
+      localStorage.setItem('theme', theme);
+    }
+    themeButtons.forEach(button => button.addEventListener('click', () => setTheme(button.dataset.themeChoice)));
+    setTheme(preferredTheme);
+
+    const filterButtons = [...document.querySelectorAll('[data-filter]')];
+    const publications = [...document.querySelectorAll('.publication')];
+    filterButtons.forEach(button => button.addEventListener('click', () => {
+      const showAll = button.dataset.filter === 'all';
+      filterButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      publications.forEach(item => item.hidden = !showAll && item.dataset.selected !== 'true');
+    }));
+    document.querySelector('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
