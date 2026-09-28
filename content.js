@@ -63,7 +63,7 @@ window.siteContent = {
     {
       "title": "Real-to-Sim Parameter Inference from Robot Motion",
       "context": "",
-      "dates": "",
+      "dates": "May 2026 – Present",
       "summary": "This project explores how physical and actuation parameters of voxel-based robots can be inferred directly from real-world motion videos. The goal is to connect observed behavior with a simulation model that can reproduce the robot’s motion.\n\nA TimeSformer-based model processes eight frames sampled from a single motion cycle to predict spatial parameter maps and a shared actuation frequency. The inferred parameters are then used to re-simulate the robot, allowing direct visual comparison between recorded and reconstructed motion.\n\nPreliminary real-world evaluations examine whether the predicted actuation phases match the robot’s known drive pattern. Across three videos with phase annotations, the model correctly identifies 11 of 16 cells, while frequency errors across four recordings range from approximately 0.8% to 2.5%.",
       "contribution": "",
       "tags": ["Real-to-Sim", "Visual system identification", "Video transformers"],
