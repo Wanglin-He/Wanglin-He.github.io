@@ -2,6 +2,18 @@
 
 网站地址：https://wanglin-he.github.io
 
+个人学术主页，通过 GitHub Pages 发布。网页内容依据简历和项目材料整理。
+
+## 修改三个项目
+
+`content.js` 中的 `projects` 数组包含三个项目。修改 `title`（标题）、`summary`（简述）、`contribution`（个人贡献）、`dates`（时间）和 `tags`（关键词）。
+
+添加项目链接：`links: [{ label: "Code", url: "https://github.com/你的项目" }]`。
+
+添加截图：将图片放入本文件所在目录，在该项目的 `image` 中填写文件名，如 `"robot.jpg"`。留空则不显示图片。
+
+`cv.pdf` 是经本人确认公开的完整简历。
+
 ## 修改文案和链接
 
 1. 打开仓库中的 `content.js`，点击铅笔图标。

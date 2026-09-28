@@ -1,5 +1,4 @@
-(() => {
-  const c = window.siteContent;
+function renderSite(c) {
   if (!c) return;
   const make = (tag, text, className) => {
     const node = document.createElement(tag);
@@ -41,8 +40,48 @@
   const photo = document.querySelector('.portrait img');
   photo.src = c.portrait;
   photo.alt = `Portrait of ${c.name}`;
+  let sectionAnchor = document.querySelector('.hero');
+  for (const [key, title] of [['projects', 'Projects'], ['honors', 'Honors']]) {
+  const projectSection = make('section', '', `section ${key}-section`);
+  projectSection.setAttribute('aria-labelledby', `${key}-title`);
+  const projectHeading = make('h2', title);
+  projectHeading.id = `${key}-title`;
+  projectSection.append(projectHeading);
+  (c[key] || []).forEach((project, index) => {
+    const article = make('article', '', 'project');
+    const meta = make('div', '', 'project-meta');
+    meta.append(make('span', project.dates));
+    const body = make('div', '', 'project-body');
+    body.append(make('h3', project.title), make('p', project.context, 'project-context'));
+    if (project.image) {
+      const image = make('img', '', 'project-image');
+      image.src = project.image;
+      image.alt = project.title;
+      image.loading = 'lazy';
+      meta.prepend(image);
+      article.classList.add('project-with-image');
+    }
+    const descriptions = project.summary.split(/\n\s*\n/).filter(Boolean);
+    descriptions.forEach((text, i) => body.append(make('p', text, i === 0 ? 'project-summary' : 'project-description')));
+    if (project.contribution?.trim()) {
+      const contribution = make('div', '', 'project-contribution');
+      contribution.append(make('span', 'My contribution', 'contribution-label'), make('p', project.contribution));
+      body.append(contribution);
+    }
+    const tags = make('div', '', 'project-tags');
+    tags.append(...(project.tags || []).map(tag => make('span', tag)));
+    const links = make('div', '', 'paper-links');
+    links.append(...(project.links || []).map(link));
+    body.append(tags, links);
+    article.append(meta, body);
+    projectSection.append(article);
+  });
+  document.querySelector(`.${key}-section`)?.remove();
+  sectionAnchor.after(projectSection);
+  sectionAnchor = projectSection;
+  }
   document.querySelector('#publications-title').textContent = c.publicationsTitle;
-  document.querySelector('.filters').remove();
+  document.querySelector('.filters')?.remove();
   const list = document.querySelector('.pub-list');
   list.classList.remove('publication-draft');
   list.replaceChildren();
@@ -65,4 +104,12 @@
   document.querySelector('footer').replaceChildren(
     make('span', `© ${new Date().getFullYear()} ${c.name}`), make('span', c.footer)
   );
-})();
+}
+renderSite(window.siteContent);
+if (window.parent !== window && ['127.0.0.1', 'localhost'].includes(location.hostname)) {
+  window.addEventListener('message', event => {
+    if (event.origin === location.origin && event.source === window.parent && event.data?.type === 'preview-content') {
+      renderSite(event.data.content);
+    }
+  });
+}

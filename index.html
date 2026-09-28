@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A clean academic portfolio for research, publications, and selected work.">
-  <meta name="color-scheme" content="light dark">
-  <title>Wanglin-He | Personal Website</title>
+  <meta name="color-scheme" content="light">
+  <title>Wanglin He | Robotics</title>
   <script defer src="content.js"></script>
   <script defer src="render.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,17 +24,6 @@
       --mark: #cfe5dc;
       --shadow: 0 18px 50px rgba(22, 43, 37, .08);
     }
-    [data-theme="dark"] {
-      --bg: #111715;
-      --surface: #18201e;
-      --ink: #edf2ef;
-      --muted: #a8b3af;
-      --faint: #2c3733;
-      --accent: #90cbb8;
-      --accent-soft: #213c35;
-      --mark: #315c4e;
-      --shadow: 0 18px 50px rgba(0, 0, 0, .24);
-    }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
@@ -43,36 +32,27 @@
       color: var(--ink);
       font-family: "DM Sans", system-ui, sans-serif;
       font-size: 16px;
-      line-height: 1.65;
+      line-height: 1.7;
       transition: background .25s ease, color .25s ease;
     }
     a { color: inherit; text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent); text-underline-offset: .18em; }
     a:hover { color: var(--accent); }
     button, a { -webkit-tap-highlight-color: transparent; }
-    .page { width: min(1040px, calc(100% - 40px)); margin: 0 auto; }
-    .topbar { display: flex; justify-content: flex-end; padding-top: 24px; }
-    .theme-toggle {
-      display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--faint);
-      border-radius: 999px; background: var(--surface); box-shadow: 0 5px 18px rgba(22,43,37,.05);
-    }
-    .theme-toggle button {
-      width: 34px; height: 34px; border: 0; border-radius: 50%; background: transparent;
-      color: var(--muted); cursor: pointer; font-size: 16px;
-    }
-    .theme-toggle button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+    .page { width: min(900px, calc(100% - 48px)); margin: 0 auto; }
     .hero {
-      display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 78px;
-      padding: 34px 0 76px; border-bottom: 1px solid var(--faint); align-items: start;
+      display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 64px;
+      padding: 98px 0 64px; border-bottom: 1px solid var(--faint); align-items: start;
     }
     h1, h2, h3 { font-family: "Newsreader", Georgia, serif; }
-    h1 { margin: 0; font-size: clamp(3.4rem, 7vw, 5.35rem); line-height: .96; letter-spacing: -.045em; font-weight: 600; }
+    h1 { margin: 0; font-size: clamp(2.72rem, 5.6vw, 4.28rem); line-height: .96; letter-spacing: -.045em; font-weight: 600; }
     .role { margin: 15px 0 28px; color: var(--muted); font-family: "Newsreader", Georgia, serif; font-size: 1.25rem; }
-    .bio { max-width: 710px; }
-    .bio p { margin: 0 0 15px; }
+    .bio { max-width: 626px; font-size: 1.0625rem; }
+    .bio p { margin: 0 0 20px; }
+    .bio p:last-child { margin-bottom: 0; }
     .links { display: flex; flex-wrap: wrap; gap: 10px 21px; margin-top: 28px; }
     .links a { color: var(--muted); text-decoration: none; font-size: .95rem; }
     .links a:hover { color: var(--accent); }
-    .portrait-wrap { position: sticky; top: 24px; }
+    .portrait-wrap { position: static; padding-top: 2px; }
     .portrait {
       width: 210px; aspect-ratio: 1; margin-left: auto; border-radius: 50%; display: block; overflow: hidden;
       color: #eef8f4; background:
@@ -82,9 +62,25 @@
       border: 7px solid var(--surface);
     }
     .portrait-note { margin: 13px 0 0; text-align: center; color: var(--muted); font-size: .78rem; }
-    .portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 48% 57%; transform: scale(1.65); transform-origin: 48% 57%; }
+    .portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 48% 65%; transform: scale(1.55); transform-origin: 48% 65%; }
     .publication-draft { display: none !important; }
-    .section { padding: 66px 0 36px; }
+    .projects-section, .honors-section { border-bottom: 1px solid var(--faint); }
+    .projects-section > h2, .honors-section > h2 { margin-bottom: 36px; }
+    .project { display: grid; grid-template-columns: 155px minmax(0, 1fr); gap: 32px; padding: 32px 0; border-top: 1px solid var(--faint); }
+    .project-with-image { grid-template-columns: 240px minmax(0, 1fr); }
+    .project-body { min-width: 0; max-width: 68ch; }
+    .contribution-label { display: block; font-size: .875rem; font-weight: 600; color: var(--accent); margin-bottom: 5px; }
+    .project-meta { display: flex; flex-direction: column; gap: 16px; font-size: .875rem; color: var(--muted); }
+    .project-number { font-family: "Newsreader", Georgia, serif; font-size: 2.8rem; line-height: 1; color: var(--accent); }
+    .project h3 { margin: 0 0 12px; font-size: 1.7rem; line-height: 1.25; }
+    .project p { margin: 0 0 14px; }
+    .project-context { color: var(--muted); font-size: .9rem; }
+    .project-summary { font-weight: 500; }
+    .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+    .project-tags span { padding: 3px 10px; border-radius: 30px; color: var(--accent); background: var(--accent-soft); font-size: .875rem; }
+    .project-image { display: block; width: 100%; max-height: 320px; object-fit: contain; border-radius: 10px; margin: 0; }
+    @media (max-width: 760px) { .project { grid-template-columns: 1fr; gap: 16px; } .project-meta { flex-direction: column; align-items: flex-start; } .project-image { max-height: 360px; } }
+    .section { padding: 56px 0 32px; }
     .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
     h2 { margin: 0; font-size: clamp(2.2rem, 5vw, 3.35rem); line-height: 1; letter-spacing: -.03em; }
     .filters { display: flex; gap: 6px; padding: 4px; border: 1px solid var(--faint); border-radius: 999px; background: var(--surface); }
@@ -115,7 +111,7 @@
     .paper-art.ink { background: linear-gradient(145deg, #585b69, #242730); }
     .paper-code { position: relative; z-index: 1; font-size: .72rem; letter-spacing: .13em; text-transform: uppercase; opacity: .78; }
     .paper-shape { position: relative; z-index: 1; font: 500 2.1rem/1 "Newsreader", Georgia, serif; }
-    .pub-body { align-self: center; }
+    .pub-body { align-self: center; min-width: 0; max-width: 72ch; }
     .pub-body h3 { margin: 0 0 5px; font-size: 1.45rem; line-height: 1.15; letter-spacing: -.015em; }
     .authors, .summary { margin: 0; color: var(--muted); }
     .venue { display: inline-flex; margin: 10px 0 11px; padding: 3px 9px; border-radius: 999px; color: var(--accent); background: var(--accent-soft); font-size: .78rem; font-weight: 600; }
@@ -125,13 +121,12 @@
     footer { display: flex; justify-content: space-between; gap: 30px; margin-top: 58px; padding: 28px 0 42px; border-top: 1px solid var(--faint); color: var(--muted); font-size: .84rem; }
     :focus-visible { outline: 3px solid var(--mark); outline-offset: 3px; }
     @media (max-width: 760px) {
-      .page { width: min(100% - 28px, 620px); }
-      .topbar { padding-top: 15px; }
+      .page { width: min(100% - 40px, 620px); }
       .hero { grid-template-columns: 1fr; gap: 28px; padding-top: 20px; padding-bottom: 52px; }
       .portrait-wrap { grid-row: 1; position: static; }
       .portrait { width: 120px; margin: 0; font-size: 2.5rem; border-width: 5px; }
       .portrait-note { display: none; }
-      h1 { font-size: clamp(3.2rem, 15vw, 4.8rem); }
+      h1 { font-size: clamp(2.56rem, 12vw, 3.84rem); }
       .section { padding-top: 50px; }
       .section-head { align-items: center; }
       .publication { grid-template-columns: 1fr; gap: 18px; padding: 14px; }
@@ -143,12 +138,6 @@
 </head>
 <body>
   <main class="page">
-    <div class="topbar">
-      <div class="theme-toggle" role="group" aria-label="Color theme">
-        <button type="button" data-theme-choice="light" aria-label="Use light theme" aria-pressed="true">☀</button>
-        <button type="button" data-theme-choice="dark" aria-label="Use dark theme" aria-pressed="false">☾</button>
-      </div>
-    </div>
 
     <section class="hero" aria-labelledby="intro-title">
       <div>
@@ -227,17 +216,6 @@
     <footer><span>© <span id="year"></span></span><span>Always learning. Always exploring.</span></footer>
   </main>
   <script>
-    const root = document.documentElement;
-    const themeButtons = [...document.querySelectorAll('[data-theme-choice]')];
-    const preferredTheme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    function setTheme(theme) {
-      root.dataset.theme = theme;
-      themeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === theme)));
-      localStorage.setItem('theme', theme);
-    }
-    themeButtons.forEach(button => button.addEventListener('click', () => setTheme(button.dataset.themeChoice)));
-    setTheme(preferredTheme);
-
     const filterButtons = [...document.querySelectorAll('[data-filter]')];
     const publications = [...document.querySelectorAll('.publication')];
     filterButtons.forEach(button => button.addEventListener('click', () => {
