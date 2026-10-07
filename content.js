@@ -76,7 +76,7 @@ window.siteContent = {
     {
       title: "Robotic Budding: From Homogeneous Cells to Diverse Morphologies in Physical Self-Reproduction",
       authors: "**Wanglin He**, Siyuan Zhang, Junyan Liu",
-      venue: "IROS 2026 Workshop · Under review",
+      venue: "IROS 2026 Workshop",
       highlight: "",
       image: "images/budding-trilobite.jpg",
       links: [
