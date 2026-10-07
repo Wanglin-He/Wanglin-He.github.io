@@ -1,119 +1,115 @@
-// 使用本地编辑器或直接编辑此文件。
+// 网站的全部文字都在这里。修改引号里的内容即可，保留引号、逗号和括号。
+// 正文里的链接写成 [文字](网址)，加粗写成 **文字**。
 window.siteContent = {
-  "name": "Wanglin He",
-  "tagline": "M.S. Student in Mechanical Engineering · Columbia University",
-  "portrait": "portrait.png",
-  "bio": [
-    "I am a master’s student in Mechanical Engineering at Columbia University. My interests span robotic hardware design and prototyping, as well as robot learning, with a particular focus on vision-language-action models and world models.",
-    "At Columbia’s Creative Machines Lab, led by Prof. Hod Lipson, I develop control systems and simulation infrastructure for self-reproducing modular robots. This work is currently under review at an IROS 2026 workshop. I am also developing a benchmark to evaluate the robustness of vision-language-action models under visual occlusion and long-horizon manipulation, in collaboration with researchers at MIT and HKUST.",
-    "I also serve as a Teaching Assistant for Robotic Studio at Columbia, helping students design and build robots and apply machine learning methods, including reinforcement learning, to robotic control."
+  name: "Wanglin He",
+  tagline: "M.S. Student in Mechanical Engineering · Columbia University",
+  location: "New York, NY",
+  portrait: "images/portrait.jpg",
+
+  // icon 可选：email、github、linkedin、cv、scholar
+  links: [
+    { label: "Email", url: "mailto:wh2629@columbia.edu", icon: "email" },
+    { label: "GitHub", url: "https://github.com/Wanglin-He", icon: "github" },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/wanglin-he-786077383/", icon: "linkedin" },
+    { label: "CV", url: "cv.pdf", icon: "cv" }
   ],
-  "links": [
+
+  bio: [
+    "I am a master’s student in Mechanical Engineering at [Columbia University](https://www.columbia.edu). My interests span robot hardware design and robot learning, with a focus on vision-language-action (VLA) models and world models.",
+    "At the [Creative Machines Lab](https://www.creativemachineslab.com), supervised by [Prof. Hod Lipson](https://www.hodlipson.com), I develop the control system and simulation for self-reproducing modular robots. I am also building a benchmark with researchers at MIT and HKUST that tests how VLA models hold up under visual occlusion and long-horizon manipulation.",
+    "I am a Teaching Assistant for Robotic Studio (MECE 4611) at Columbia. Before Columbia, I received my B.Eng. in Mechanical Engineering from [Shanghai University of Engineering Science](https://www.sues.edu.cn), where I designed robots for the RoboMaster University Competition.",
+    "I am always happy to talk about robotics — feel free to reach out via [email](mailto:wh2629@columbia.edu)."
+  ],
+
+  // 研究方向卡片。icon 可选：wrench、bot、layers、cube、spark
+  research: {
+    intro: "From mechanical design to learned policies, I work on what it takes for robots to act reliably in the physical world.",
+    areas: [
+      {
+        icon: "wrench",
+        title: "Robot Hardware & Prototyping",
+        text: "Mechanisms, modular robots and competition robots — from CAD and circuit boards to working prototypes."
+      },
+      {
+        icon: "bot",
+        title: "Robot Learning & VLA Models",
+        text: "How vision-language-action models perform under occlusion and over long-horizon tasks, and where they fail."
+      },
+      {
+        icon: "layers",
+        title: "Simulation & Real-to-Sim",
+        text: "Physics simulation in MuJoCo/MJX and Isaac Sim, and inferring simulation parameters from real robot videos."
+      }
+    ]
+  },
+
+  // 项目：image 是缩略图（放在 images 文件夹），status 是加粗的一行，summary 建议一到两句话
+  projects: [
     {
-      "label": "Email",
-      "url": "mailto:wh2629@columbia.edu"
+      title: "Robustness of Vision-Language-Action Models",
+      context: "With researchers at MIT and HKUST",
+      status: "Ongoing · May 2026 – Present",
+      summary: "An Isaac Sim benchmark for VLA models on long-horizon mug manipulation with an xArm, built to tell perception failures apart from planning and execution errors under visual occlusion.",
+      image: "images/vla-manipulation.jpg",
+      links: []
     },
     {
-      "label": "GitHub",
-      "url": "https://github.com/Wanglin-He"
+      title: "Robotic Budding: Self-Reproducing Modular Robots",
+      context: "Creative Machines Lab, Columbia University · Supervised by Prof. Hod Lipson",
+      status: "Ongoing · Sep 2025 – Present",
+      summary: "A parent robot collects loose modules by magnetic docking, folds them into an offspring and separates from it; the offspring then moves on its own. I build the control system and the MuJoCo/MJX simulation, including a model of magnetic docking.",
+      image: "images/budding-seal.jpg",
+      links: [{ label: "Paper", url: "robotic-budding.pdf" }]
     },
     {
-      "label": "LinkedIn",
-      "url": "https://www.linkedin.com/in/wanglin-he-786077383/"
-    },
-    {
-      "label": "CV",
-      "url": "cv.pdf"
+      title: "Real-to-Sim Parameter Inference from Robot Motion",
+      context: "",
+      status: "Ongoing · May 2026 – Present",
+      summary: "A TimeSformer-based model watches eight frames of a voxel robot’s motion cycle and predicts its physical and actuation parameters, which are then re-simulated for comparison with the real video. Across four real recordings, the actuation frequency error is 0.8–2.5%.",
+      image: "images/real2sim.jpg",
+      links: []
     }
   ],
-  "projects": [
+
+  // 论文：authors 里用 **名字** 加粗自己；highlight 可写获奖信息（红色显示），没有就留空
+  publications: [
     {
-      "title": "Robustness of Vision-Language-Action Models",
-      "context": "Collaborative research with researchers at MIT and HKUST",
-      "dates": "May 2026 – Present",
-      "summary": "How can robots act reliably when visual information is incomplete and manipulation tasks unfold over multiple steps? This ongoing project aims to evaluate the robustness of vision-language-action (VLA) models under visual occlusion and long-horizon manipulation.\n\nThe experimental workflow is being developed in Isaac Sim, with current work centered on xArm-based mug manipulation. It connects camera observations, geometric reasoning, and motion planning, with checks on coordinate frames, grasp geometry, and collision representations before executing candidate motions.\n\nThe broader goal is to build reproducible evaluations that distinguish perception failures from planning and execution errors. Current efforts focus on validating the experimental infrastructure; comparative model evaluation remains a subsequent stage of the project.",
-      "contribution": "",
-      "tags": [
-        "Robot learning",
-        "Isaac Sim",
-        "VLA evaluation"
-      ],
-      "image": "vla-manipulation.png",
-      "links": []
-    },
-    {
-      "title": "Robotic Budding: Self-Reproducing Modular Robots",
-      "context": "Creative Machines Lab, Columbia University · Prof. Hod Lipson",
-      "dates": "September 2025 – Present",
-      "summary": "Robotic Budding explores physical self-reproduction using a single standardized robotic module. Each module combines two actuated joints, onboard power and computation, and magnetic docking interfaces, allowing the same hardware to form a three-module trilobite or a five-module seal.\n\nA parent robot collects loose modules through magnetic docking, folds the acquired modules into a three-dimensional offspring, and executes a programmed separation sequence. The parent retains its original modules, while the offspring is built entirely from the collected modules and can move independently.\n\nA browser-based interface supports human teleoperation through discrete motion commands, wireless communication, and module-status feedback. Magnetic interaction simulations model distance-dependent attraction and near-contact damping to support docking-parameter evaluation.\n\nPreliminary hardware experiments demonstrated the complete budding process once for each morphology. These demonstrations establish mechanical feasibility; autonomous collection and docking, repeated-trial evaluation, and reproduction across multiple generations remain future work.",
-      "contribution": "",
-      "tags": [
-        "Modular robotics",
-        "Physical self-reproduction",
-        "MuJoCo / MJX"
-      ],
-      "image": "robotic-budding.png",
-      "links": [
-        {
-          "label": "Paper PDF",
-          "url": "robotic-budding.pdf"
-        }
+      title: "Robotic Budding: From Homogeneous Cells to Diverse Morphologies in Physical Self-Reproduction",
+      authors: "**Wanglin He**, Siyuan Zhang, Junyan Liu",
+      venue: "IROS 2026 Workshop",
+      highlight: "",
+      image: "images/budding-trilobite.jpg",
+      links: [
+        { label: "OpenReview", url: "https://openreview.net/forum?id=2dITymcecM" },
+        { label: "PDF", url: "robotic-budding.pdf" }
       ]
     },
     {
-      "title": "Real-to-Sim Parameter Inference from Robot Motion",
-      "context": "",
-      "dates": "May 2026 – Present",
-      "summary": "This project explores how physical and actuation parameters of voxel-based robots can be inferred directly from real-world motion videos. The goal is to connect observed behavior with a simulation model that can reproduce the robot’s motion.\n\nA TimeSformer-based model processes eight frames sampled from a single motion cycle to predict spatial parameter maps and a shared actuation frequency. The inferred parameters are then used to re-simulate the robot, allowing direct visual comparison between recorded and reconstructed motion.\n\nPreliminary real-world evaluations examine whether the predicted actuation phases match the robot’s known drive pattern. Across three videos with phase annotations, the model correctly identifies 11 of 16 cells, while frequency errors across four recordings range from approximately 0.8% to 2.5%.",
-      "contribution": "",
-      "tags": ["Real-to-Sim", "Visual system identification", "Video transformers"],
-      "image": "real2sim-robot.png",
-      "links": []
+      title: "Mechanical Training Arm to Assist in Fracture Rehabilitation",
+      authors: "C. Sun, **W. He**, H. Wen",
+      venue: "International Journal of Technical & Scientific Research Engineering, 2023",
+      highlight: "",
+      image: "",
+      links: [{ label: "Paper", url: "https://www.ijtsre.org/papers/2023/ev6c3/IJT-44712288.pdf" }]
     }
   ],
-  "honors": [
-    {
-      "title": "RoboMaster University Competition",
-      "context": "Shanghai University of Engineering Science · Supervised by Prof. Chunyan Zhang",
-      "dates": "March 2022 – June 2024",
-      "summary": "Mechanical and electrical system design for a RoboMaster Hero robot, from its turret and firing mechanism to an omnidirectional chassis.",
-      "contribution": "I led structural design, circuit-board drawing, and wiring layout using SolidWorks and Altium Designer. The chassis combined mecanum wheels with multi-stage damping, while a slip ring allowed the turret and chassis to move independently without interfering with turret circuitry.",
-      "tags": [
-        "Mechanical design",
-        "SolidWorks",
-        "Altium Designer"
-      ],
-      "image": "",
-      "links": []
-    }
+
+  // 以下三个板块是两列表格：label 是左边粗体，text 是右边说明
+  education: [
+    { label: "Columbia University", text: "M.S. in Mechanical Engineering, 2025 – present" },
+    { label: "Shanghai University of Engineering Science", text: "B.Eng. in Mechanical Engineering, 2020 – 2024" }
   ],
-  "publicationsTitle": "Publications",
-  "emptyPublications": "Publication details will be added here.",
-  "publications": [
-    {
-      "title": "Robotic Budding: From Homogeneous Cells to Diverse Morphologies in Physical Self-Reproduction",
-      "authors": "Wanglin He, Siyuan Zhang, Junyan Liu",
-      "venue": "",
-      "summary": "",
-      "links": [
-        {
-          "label": "Paper PDF",
-          "url": "robotic-budding.pdf"
-        }
-      ]
-    },
-    {
-      "title": "Mechanical Training Arm to Assist in Fracture Rehabilitation",
-      "authors": "C. Sun, W. He, H. Wen",
-      "venue": "International Journal of Technical & Scientific Research Engineering · 6(3), 2023",
-      "summary": "",
-      "links": [
-        {
-          "label": "Paper PDF",
-          "url": "https://www.ijtsre.org/papers/2023/ev6c3/IJT-44712288.pdf"
-        }
-      ]
-    }
+
+  experience: [
+    { label: "Columbia University, 2026 –", text: "Graduate Teaching Assistant, MECE 4611 Robotic Studio" },
+    { label: "Creative Machines Lab, 2025 –", text: "Graduate Researcher, supervised by Prof. Hod Lipson" },
+    { label: "RoboMaster, 2022 – 2024", text: "Mechanical & Hardware Engineer for the SUES team — turret and chassis of the Hero robot" }
   ],
-  "footer": "Robot learning · Simulation · Mechanical design"
+
+  honors: [
+    { label: "Shanghai, 2024", text: "Outstanding Graduate of Shanghai" },
+    { label: "SUES", text: "Outstanding Student Scholarship, 2nd and 3rd Prize" }
+  ],
+
+  updated: "October 2026"
 };
